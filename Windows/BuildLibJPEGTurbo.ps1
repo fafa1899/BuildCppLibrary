@@ -2,7 +2,7 @@ param(
     [string]$Generator = "Visual Studio 16 2019",
     [string]$MSBuild = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe",
     [string]$SourceAddress = "https://codeload.github.com/libjpeg-turbo/libjpeg-turbo/zip/refs/tags/3.0.3",
-    [string]$SourceZipPath = "./libjpeg-turbo-3.0.3.zip",
+    [string]$SourceZipPath = "../Source/libjpeg-turbo-3.0.3.zip",
     [string]$SourceLocalPath = "./libjpeg-turbo-3.0.3",
     [string]$BuildDir = "./libjpeg-turbo-3.0.3/build",
     [string]$InstallDir = "$env:GISBasic"
