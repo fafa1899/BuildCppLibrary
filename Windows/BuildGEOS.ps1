@@ -38,6 +38,17 @@ try {
 
     # 安装库
     & $MSBuild INSTALL.vcxproj /p:Configuration=RelWithDebInfo /p:Platform=x64 /m
+
+    # 复制符号库
+    $PdbFiles = @(
+        "./bin/RelWithDebInfo/geos.pdb",
+        "./bin/RelWithDebInfo/geos_c.pdb"
+    ) 
+    $SymbolDir = $InstallDir + "/symbol"
+    foreach ($file in $PdbFiles) {  
+        Write-Output $file
+        Copy-Item -Path $file -Destination $SymbolDir
+    }   
 }
 finally {
     # 返回原始工作目录
