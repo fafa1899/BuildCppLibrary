@@ -1,7 +1,5 @@
 param( 
-    [string]$PrecompiledBinarie = "./Precompiled/sqlite-dll-win-x64-3460000.zip",
-    [string]$PrecompiledBinarieTools = "./Precompiled/sqlite-tools-win-x64-3460000.zip",
-    [string]$SourceLocalPath = "../Source/sqlite-3.4.6",
+    [string]$SourceLocalPath = "../Source/giflib-5.2.2",
     [string]$Generator = "Visual Studio 16 2019",
     [string]$MSBuild = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe",
     [string]$InstallDir = "$env:GISBasic"
@@ -9,10 +7,10 @@ param(
 
 # 清除旧的构建目录
 $BuildDir = $SourceLocalPath + "/build"  
-if (Test-Path $BuildDir) {
-    Remove-Item -Path $BuildDir -Recurse -Force
-}
-New-Item -ItemType Directory -Path $BuildDir
+# if (Test-Path $BuildDir) {
+#     Remove-Item -Path $BuildDir -Recurse -Force
+# }
+# New-Item -ItemType Directory -Path $BuildDir
 
 # 转到构建目录
 Push-Location $BuildDir
@@ -29,7 +27,7 @@ try {
 
     # # 复制符号库
     $PdbFiles = @(
-        "./RelWithDebInfo/sqlite3.pdb"        
+        "./RelWithDebInfo/giflib.pdb"        
     ) 
     $SymbolDir = $InstallDir + "/symbol"
     foreach ($file in $PdbFiles) {  
@@ -41,8 +39,3 @@ finally {
     # 返回原始工作目录
     Pop-Location
 }
-
-# 解压缩 ZIP 文件
-Write-Output "Install precompiled package..."
-#Expand-Archive -Path $PrecompiledBinarie -DestinationPath $InstallDir -Force
-Expand-Archive -Path $PrecompiledBinarieTools -DestinationPath "$InstallDir/bin" -Force
